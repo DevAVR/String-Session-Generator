@@ -126,11 +126,11 @@ async def genStr(_, msg: Message):
         return
     try:
         session_string = await client.export_session_string()
-        await client.send_message("me", f"#PYROGRAM #STRING_SESSION\n\n```{session_string}``` \n\nBy [@StringSessionGen_Bot](tg://openmessage?user_id=1472531255) \nA Bot By @Discovery_Updates")
+        await client.send_message("me", f"#PYROGRAM #STRING_SESSION ✅\n\n```{session_string}``` \n\nBy [@MD_StringSession_Bot](tg://openmessage?user_id=1637779993) \nA Bot By @Mr_Bot_Developer")
         await client.disconnect()
-        text = "String Session is Successfully Generated.\nClick on Below Button."
+        text = "String Session is Successfully ✅ Generated.\nClick on Below Button."
         reply_markup = InlineKeyboardMarkup(
-            [[InlineKeyboardButton(text="Show String Session", url=f"tg://openmessage?user_id={chat.id}")]]
+            [[InlineKeyboardButton(text="Show String Session ✅", url=f"tg://openmessage?user_id={chat.id}")]]
         )
         await bot.send_message(chat.id, text, reply_markup=reply_markup)
     except Exception as e:
