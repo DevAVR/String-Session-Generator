@@ -33,7 +33,7 @@ PHONE_NUMBER_TEXT = (
 
 UPDATES_CHANNEL = os.environ.get('UPDATES_CHANNEL', 'Mr_Bot_Developer')
 
-@bot.on_message(filters.private & filters.command("start") & filters.genStr)
+@bot.on_message(filters.private & filters.command("start"))
 async def genStr(_, msg: Message):
     if message.chat.id in Credentials.BANNED_USERS:
         await client.send_message(
