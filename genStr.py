@@ -71,7 +71,7 @@ async def genStr(_, msg: Message):
         except Exception:
             await client.send_message(
                 chat_id=message.chat.id,
-                text="Something went Wrong. Contact my [Support Group](https://t.me/Mr_Developer_Support).",
+                text="**Something went Wrong 🤪. Contact my [Support Group](https://t.me/Mr_Developer_Support).**",
                 parse_mode="markdown",
                 disable_web_page_preview=True
             )
