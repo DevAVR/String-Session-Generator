@@ -34,7 +34,7 @@ UPDATES_CHANNEL = os.environ.get('UPDATES_CHANNEL', 'Mr_Bot_Developer')
 
 @bot.on_message(filters.private & filters.command("start"))
 async def genStr(_, msg: Message):
-    if message.chat.id in Credentials.BANNED_USERS:
+    if chat.id in Credentials.BANNED_USERS:
         await client.send_message(
             chat_id=message.chat.id,
             text="You are Banned 🚫 to use me 🤭. Contact My [Support Group](https://t.me/Mr_Developer_Support)",
