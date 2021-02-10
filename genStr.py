@@ -11,6 +11,8 @@ from pyrogram.errors import (
     PhoneNumberInvalid, ApiIdInvalid,
     PhoneCodeInvalid, PhoneCodeExpired
 )
+from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant, UsernameNotOccupied, ChatAdminRequired, PeerIdInvalid
+from creds import Credentials
 
 API_TEXT = """Hi, {}.
 This is Pyrogram's String Session Generator Bot. I will generate String Session of your Telegram Account.
@@ -29,6 +31,49 @@ PHONE_NUMBER_TEXT = (
 
 @bot.on_message(filters.private & filters.command("start"))
 async def genStr(_, msg: Message):
+    if message.chat.id in Credentials.BANNED_USERS:
+        await client.send_message(
+            chat_id=message.chat.id,
+            text="You are Banned 🚫 to use me 🤭. Contact My [Support Group](https://t.me/Mr_Developer_Support)",
+            reply_to_message_id=message.message_id
+        )
+        return
+    ## Doing Force Sub 🤣
+    update_channel = UPDATES_CHANNEL
+    if update_channel:
+        try:
+            user = await client.get_chat_member(update_channel, message.chat.id)
+            if user.status == "kicked":
+               await client.send_message(
+                   chat_id=message.chat.id,
+                   text="Sorry Sir, You are Banned!\nNow Your Can't Use Me. Contact my [Support Group](https://t.me/Mr_Developer_Support).",
+                   parse_mode="markdown",
+                   disable_web_page_preview=True
+               )
+               return
+        except UserNotParticipant:
+            await client.send_message(
+                chat_id=message.chat.id,
+                text="**Please Join My Updates Channel to use me! 😎**",
+                reply_markup=InlineKeyboardMarkup(
+                    [
+                        [
+                            InlineKeyboardButton("Join Updates Channel 😎", url=f"https://t.me/{update_channel}")
+                        ]
+                    ]
+                ),
+                parse_mode="markdown"
+            )
+            return
+        except Exception:
+            await client.send_message(
+                chat_id=message.chat.id,
+                text="Something went Wrong. Contact my [Support Group](https://t.me/Mr_Developer_Support).",
+                parse_mode="markdown",
+                disable_web_page_preview=True
+            )
+            return
+
     chat = msg.chat
     api = await bot.ask(
         chat.id, API_TEXT.format(msg.from_user.mention)
