@@ -1,10 +1,11 @@
 import asyncio
 import os
+import time
 from bot import bot, HU_APP
 from pyromod import listen
 from asyncio.exceptions import TimeoutError
 
-from pyrogram import filters, Client
+from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
 from pyrogram.errors import (
     SessionPasswordNeeded, FloodWait,
@@ -32,7 +33,7 @@ PHONE_NUMBER_TEXT = (
 
 UPDATES_CHANNEL = os.environ.get('UPDATES_CHANNEL', 'Mr_Bot_Developer')
 
-@bot.on_message(filters.private & filters.command("start"))
+@bot.on_message(filters.private & filters.command("start") & filters.genStr)
 async def genStr(_, msg: Message):
     if message.chat.id in Credentials.BANNED_USERS:
         await client.send_message(
