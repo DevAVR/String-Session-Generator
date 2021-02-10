@@ -29,6 +29,9 @@ PHONE_NUMBER_TEXT = (
     "Press /cancel to Cancel Task."
 )
 
+
+UPDATES_CHANNEL = os.environ.get('UPDATES_CHANNEL', 'Mr_Bot_Developer')
+
 @bot.on_message(filters.private & filters.command("start"))
 async def genStr(_, msg: Message):
     if message.chat.id in Credentials.BANNED_USERS:
